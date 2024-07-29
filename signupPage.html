@@ -59,10 +59,12 @@
                     <h3 class="card-title">Register a New Account</h3>
                 </div>
                 <hr class="mb-4 text-success">
-                <form class=" needs-validation was-validated" >
+                
+                <form action="register.php" method="post" class=" needs-validation was-validated" >
+                  
                   <div class="row mb-4">
                     <label for="first_name" class="form-label"><strong>First name</strong></label>
-                    <input type="text" class="form-control" id="first_name" value="Mark" required="">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="e.g Mark" required="">
                     <div class="valid-feedback">
                       Looks good!
                     </div>
@@ -70,9 +72,10 @@
                       Please enter your first name.
                     </div>
                   </div>
+                  
                   <div class="row mb-4">
                     <label for="last_name" class="form-label"><strong>Last name</strong></label>
-                    <input type="text" class="form-control" id="last_name" value="Otto" required="">
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="e.g Otto" required="">
                     <div class="valid-feedback">
                       Looks good!
                     </div>
@@ -80,19 +83,32 @@
                       Please enter your last name.
                     </div>
                   </div>
+
+                  <div class="row mb-4">
+                    <label for="user_id" class="form-label"><strong>Student Number</strong></label>
+                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="e.g 123456789" required="">
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                      Please enter your student number.
+                    </div>
+                  </div>
+
                   <div class="row mb-4">
                     <label for="email" class="form-label"><strong>Email</strong></label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
-                      <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required="">
+                      <input type="email" class="form-control" placeholder="e.g john.doe@example.com" id="email" name="email" aria-describedby="inputGroupPrepend" required="">
                       <div class="invalid-feedback">
                         Please enter a valid email.
                       </div>
                     </div>
                   </div>
+
                   <div class="row mb-4">
                     <label for="password" class="form-label"><strong>New password</strong></label>
-                    <input type="password" class="form-control" id="password" required="">
+                    <input type="password" class="form-control" id="password" name="password" required="">
                     <div class="invalid-feedback">
                       Too short
                     </div>
@@ -100,7 +116,7 @@
                   
                   <div class="row mb-4">
                     <label for="confirm_password" class="form-label"><strong>Confirm password</strong></label>
-                    <input type="password" class="form-control" id="confirm_password" required="">
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="">
                     <div class="invalid-feedback">
                       Passwords does not match.
                     </div>
