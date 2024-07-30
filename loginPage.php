@@ -1,3 +1,34 @@
+<?php
+// Include the User class and establish database connection
+require_once 'Student.php';
+require_once 'base_connector.php'; // Assume this file creates a $db PDO instance
+
+// Check if form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $database = new Database();
+    $db = $database->getConnection();
+
+    // Attempt to login
+    $loginSuccess = User::login($username, $password, $db);
+
+    // If login fails, redirect with an error message
+    if (!$loginSuccess) {
+        $error= "Invalid email or password";
+      echo "passed here";
+    } else {
+      header('Location: Prostectus.php');
+  
+    }
+}
+?>
+
+
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,8 +66,8 @@
                       More options
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="loginPage.html">Login</a></li>
-                      <li><a class="dropdown-item" href="signupPage.html">Register</a></li>
+                      <li><a class="dropdown-item" href="loginPage.php">Login</a></li>
+                      <li><a class="dropdown-item" href="signupPage.php">Register</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="index.html">Log out</a></li>
                     </ul>
@@ -60,11 +91,11 @@
                   <h3 class="card-title">Login to Apply Smart</h3>
                 </div>
                 <hr class="mb-4 text-success">
-                <form class="needs-validation" novalidate>
+                <form method="post" action="" class="needs-validation" novalidate>
                     <div class="row mb-3">
                       <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                         <div class="valid-feedback">
                           Looks good!
                         </div>
@@ -74,13 +105,13 @@
                     <div class="row mb-3">
                       <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" required>
+                        <input type="password" class="form-control" name="password" id="inputPassword3" required>
                         
                       </div>
                     </div>
-                    <p class="text-danger">- Invalid login details</p>
-                    
+
                     <button type="submit" class="btn btn-outline-success w-25">Sign in</button>
+                    <?php if (isset($error)) echo "<strong class=\"mx-5\" style='color:red;'>$error</strong>"; ?>
                   </form>
             </div>
           </div>
