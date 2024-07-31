@@ -6,17 +6,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-  
- <?php
+
+      <div class="d-flex h-100 row" width="100" height="100" style="background-image: url('assets/background2.jpeg'); background-position: center; background-size: cover;">
+        <!-- Content here -->
+        <?php
     include 'navBar.php';
 
 
  ?>
-
-      <div class="d-flex h-100 " width="100" height="100" style="background-image: url('assets/background2.jpeg'); background-position: center; background-size: cover;">
-        <!-- Content here -->
- 
-        <div class="card text-bg-success " style="width: 25rem; --bs-bg-opacity: 0; height: 17rem; margin: 120px 120px;">
+        <div class="card text-bg-success " style="width: 25rem; --bs-bg-opacity: 0; height: 17rem; margin:0px 0px 200px 120px;">
           <div class="card-body text-center">
             <img src="assets/logo.png" data-bs-theme="dark" alt="Logo" width="60" height="80" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
             <div>

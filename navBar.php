@@ -2,7 +2,7 @@
 
 
 
-<nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark"  style="--bs-bg-opacity: 0.1; height: 80px;">
+<nav class="navbar navbar-expand-lg bg-success  px-5" data-bs-theme="dark"  style="--bs-bg-opacity: 0.1; height: 80px;">
     <!-- Navbar content -->
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
