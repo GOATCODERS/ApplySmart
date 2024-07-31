@@ -16,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If login fails, redirect with an error message
     if (!$loginSuccess) {
-        $error= "Invalid email or password";
-      echo "passed here";
+        $error= "Invalid email or password";;
     } else {
       header('Location: Prostectus.php');
   
@@ -38,53 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark" >
-        <!-- Navbar content -->
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-              <img src="assets/logo.png" alt="Logo" width="30" height="40" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
-              ApplySmart
-            </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="Prospectus.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Contact</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">About us</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      More options
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="loginPage.php">Login</a></li>
-                      <li><a class="dropdown-item" href="signupPage.php">Register</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="index.html">Log out</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <form class="d-flex mt-2" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-              </div>
-          </div>
-      </nav>
+      <?php
+        include 'navBar.php';
 
-      <div class= "d-flex h-100 justify-content-center bg-success" width="100" height="100" style="--bs-bg-opacity: 0.1;" >
+      ?>
+      <div class= "d-flex h-100 justify-content-center bg-success pt-5" width="100" height="100" style="--bs-bg-opacity: 0.1;" >
 
-        <div class="card m-5 border border-success" style="width: 40rem; height: 27rem;">
-            <div class="card-body">
+        <div class="card m-5 border border-success" style="width: 42rem; height: 27rem;">
+            <div class="card-body mx-5">
                 
                 <div class="text-center mb-4">
                     <img src="assets/logo.png" data-bs-theme="dark" alt="Logo" width="60" height="80" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
@@ -109,9 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         
                       </div>
                     </div>
+                    <div class="row mb-3 text-center">
+
+                    <?php if (isset($error)) echo "<strong style='color:red;'>$error</strong>"; ?>
+                    </div>
 
                     <button type="submit" class="btn btn-outline-success w-25">Sign in</button>
-                    <?php if (isset($error)) echo "<strong class=\"mx-5\" style='color:red;'>$error</strong>"; ?>
+                    <p>Don't </p><a href="signupPage.php"></a>
                   </form>
             </div>
           </div>

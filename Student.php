@@ -125,7 +125,6 @@ class User {
                 header('Location: welcome.php');
                 exit();
             } else {
-                echo $password;
                 return false; // Return false if login fails
             }
         } catch (PDOException $e) {
