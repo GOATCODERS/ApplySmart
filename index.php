@@ -16,7 +16,7 @@
       <div class="d-flex h-100 " width="100" height="100" style="background-image: url('assets/background2.jpeg'); background-position: center; background-size: cover;">
         <!-- Content here -->
  
-        <div class="card text-bg-success " style="width: 25rem; --bs-bg-opacity: 0.3; height: 17rem; margin: 120px 120px;">
+        <div class="card text-bg-success " style="width: 25rem; --bs-bg-opacity: 0; height: 17rem; margin: 120px 120px;">
           <div class="card-body text-center">
             <img src="assets/logo.png" data-bs-theme="dark" alt="Logo" width="60" height="80" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
             <div>

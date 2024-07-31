@@ -2,18 +2,19 @@
 
 
 
-<nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark"  style="--bs-bg-opacity: 0.1; height: 80px;">
+<nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark"  style="--bs-bg-opacity: 0.1; heig">
     <!-- Navbar content -->
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
           <img src="assets/logo.png" alt="Logo" width="30" height="40" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
           ApplySmart
         </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="Prospectus.php">Home</a>
@@ -36,11 +37,16 @@
                   <li><a class="dropdown-item" href="index.html">Log out</a></li>
                 </ul>
               </li>
-            </ul>
-            <form class="d-flex mt-2" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <li class="nav-item">
+              <form class="d-flex ms-4" role="search">
+              <input class="form-control me-2 w-70" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
+              </li>
+            </ul>
+            
           </div>
       </div>
   </nav>
+
+  

@@ -6,9 +6,19 @@
     <title>Prospetus</title>
     <link rel="stylesheet" href="Prospectus.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+    <style>
+        hr {
+            border: 0;
+            height: 2px;
+            background: #fff;
+            margin: 20px 0;
+        }
+        </style>
+  </head>
 <body>
- <?php 
+
+<div class= "h-100 bg-success row" width="100" height="100"style="background-image: url('assets/background6.png'); background-position: top right; background-size: cover;" >
+<?php 
   include 'navBar.php';
 
 ?>
@@ -50,7 +60,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center text-bg-success" style=" --bs-bg-opacity: 0.1;">
 
         <h2 class=" w-50 m-3">Courses We Offer</h2>
   
@@ -59,7 +69,7 @@
 
 <div class="row m-3">
     <div class="col-4">
-      <div class="list-group" id="list-tab" role="tablist">
+      <div class="list-group list-group-item-success" id="list-tab" role="tablist">
         <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">
             <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Software Engineer Intern</h5>
@@ -97,11 +107,18 @@
         </a>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-8 text-bg-success" style=" --bs-bg-opacity: 0.1;" >
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-            <a href="https://www.tut.ac.za/online-application-form" class="link-success link-offset-2 link-opacity-25-hover"><h3>Software Engineer Intern</h3></a>
+        <div class="row  align-bottom">
+          <a href="https://www.tut.ac.za/online-application-form" class="link-info link-offset-2 link-opacity-25-hover"><h3>Software Engineer Intern</h3></a>
+          <div class="col-sm-8 align-middle w-100 c">
+             <button type="button" class="btn btn-info text-light my-3">Apply</button>
+             <button type="button" class="btn btn-outline-info my-3 ">Save Job</button>
+                        </div>
+      </div>
             <hr>
+            
             <strong class="mb-3">Job description</strong>
         <br><br>
             <strong>Job Title:</strong><p>Full-Stack Developer Intern at Indigo AS</p>
@@ -144,11 +161,17 @@
             </ul>
 
             <p>Join us at Indigo AS and be a part of something innovative and exciting. We look forward to meeting you!</p>
-            <button type="button" class="btn btn-outline-success m-3">Apply</button>
+            <button type="button" class="btn btn-outline-success">Apply</button>
 
         </div>
         <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-            <a href="https://www.tut.ac.za/online-application-form" class="link-success link-offset-2 link-opacity-25-hover" ><h3>Primary School Maths Teacher</h3></a>
+          <div class="row  align-bottom">
+              <a href="https://www.tut.ac.za/online-application-form" class="link-info link-offset-2 link-opacity-25-hover" ><h3>Primary School Maths Teacher</h3></a>
+          <div class="col-sm-8 align-middle w-100 text-center">
+             <button type="button" class="btn btn-outline-info my-3">Apply</button>
+             <button type="button" class="btn btn-outline-secondary my-3">Save Job</button>
+                        </div>
+      </div>
             <hr>
             <strong class="mb-3">Job description</strong>
         <br><br>
@@ -178,7 +201,7 @@
       </div>
     </div>
   </div>
-
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -38,52 +38,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
+      
+      <div class= "d-flex justify-content-center align-items-start row px-2 h-100" width="100" height="100"  style="background-image: url('assets/background6.png'); background-position: bottom; background-size: fill;" >
       <?php
         include 'navBar.php';
 
       ?>
-      <div class= "d-flex h-100 justify-content-center bg-success pt-5" width="100" height="100" style="--bs-bg-opacity: 0.1;" >
-
-        <div class="card m-5 border border-success" style="width: 42rem; height: 27rem;">
-            <div class="card-body mx-5">
-                
-                <div class="text-center mb-4">
-                    <img src="assets/logo.png" data-bs-theme="dark" alt="Logo" width="60" height="80" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
-                  <h3 class="card-title">Login to Apply Smart</h3>
-                </div>
-                <hr class="mb-4 text-success">
-                <form method="post" action="" class="needs-validation was-validated" novalidate>
-                    <div class="row mb-3">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10 has-validation">
-                        <input type="email" class="form-control" id="email" name="email" required>
-                        <div class="invalid-feedback">
-                          Please enter a valid email.
+          <div class="card m-5 text-bg-success" style="width: 42rem; height: 27rem; --bs-bg-opacity: 0.2;">
+              <div class="card-body mx-5" style="--bs-bg-opacity: 0.1;">
+                  
+                  <div class="text-center mb-4">
+                      <img src="assets/logo.png" data-bs-theme="dark" alt="Logo" width="60" height="80" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
+                    <h3 class="card-title">Login to Apply Smart</h3>
+                  </div>
+                  <hr class="mb-4 text-success">
+                  <form method="post" action="" class="needs-validation was-validated" novalidate>
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10 has-validation">
+                          <input type="email" class="form-control" id="email" name="email" required>
+                          <div class="invalid-feedback">
+                            Please enter a valid email.
+                          </div>
                         </div>
-                      </div>
-                      
-                    </div>
-                    <div class="row mb-3">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" name="password" id="inputPassword3" required>
                         
                       </div>
-                    </div>
-                    <div class="row mb-3 text-center">
-
-                    <?php if (isset($error)) echo "<strong style='color:red;'>$error</strong>"; ?>
-                    </div>
-                    <div class="row mb-3 align-bottom">
-                        <button type="submit" class="btn btn-outline-success w-25">Sign in</button>
-                        <div class="col-sm-8 align-middle">
-                        <p class="d-flex align-items-center h-100">Don't have an account? <a class="link-success link-offset-2 link-opacity-25-hover ms-2" href="signupPage.php"> Sign Up</a></p>
+                      <div class="row mb-3">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" name="password" id="inputPassword3" required>
+                          
                         </div>
-                  
+                      </div>
+                      <div class="row mb-3 text-center">
+
+                      <?php if (isset($error)) echo "<strong style='color:red;'>$error</strong>"; ?>
+                      </div>
+                      <div class="row mb-3 align-bottom">
+                          <button type="submit" class="btn btn-outline-light w-25">Sign in</button>
+                          <div class="col-sm-8 align-middle">
+                          <p class="d-flex align-items-center h-100">Don't have an account? <a class="link-info link-offset-2 link-opacity-25-hover ms-2" href="signupPage.php"> Sign Up</a></p>
+                          </div>
                     
-                  </form>
+                      
+                    </form>
+              </div>
             </div>
-          </div>
+          <div class="h-100" height="100"> </div>
       </div>
 
       
