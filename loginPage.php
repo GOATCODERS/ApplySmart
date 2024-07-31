@@ -52,13 +52,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <h3 class="card-title">Login to Apply Smart</h3>
                 </div>
                 <hr class="mb-4 text-success">
-                <form method="post" action="" class="needs-validation" novalidate>
+                <form method="post" action="" class="needs-validation was-validated" novalidate>
                     <div class="row mb-3">
                       <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10">
+                      <div class="col-sm-10 has-validation">
                         <input type="email" class="form-control" id="email" name="email" required>
-                        <div class="valid-feedback">
-                          Looks good!
+                        <div class="invalid-feedback">
+                          Please enter a valid email.
                         </div>
                       </div>
                       
@@ -74,9 +74,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php if (isset($error)) echo "<strong style='color:red;'>$error</strong>"; ?>
                     </div>
-
-                    <button type="submit" class="btn btn-outline-success w-25">Sign in</button>
-                    <p>Don't </p><a href="signupPage.php"></a>
+                    <div class="row mb-3 align-bottom">
+                        <button type="submit" class="btn btn-outline-success w-25">Sign in</button>
+                        <div class="col-sm-8 align-middle">
+                        <p class="d-flex align-items-center h-100">Don't have an account? <a class="link-success link-offset-2 link-opacity-25-hover ms-2" href="signupPage.php"> Sign Up</a></p>
+                        </div>
+                  
+                    
                   </form>
             </div>
           </div>
