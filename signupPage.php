@@ -7,12 +7,12 @@
 </head>
 <body>
        
-      <div class="d-flex justify-content-center bg-success row px-2" width="100" height="100" style="background-image: url('assets/background6.png'); background-position: top right; background-size: fill;">
+      <div class="d-flex justify-content-center bg-success row px-2" width="100" height="100" style="background-image: url('assets/background9.jpg'); background-position: top right; background-size: fill;">
       <?php
         include 'navBar.php';
 
       ?>
-        <div class="card m-5 px-2 text-bg-success" style="--bs-bg-opacity: 0.2;width: 44rem; height: auto;">
+        <div class="card m-5 px-2 bg-success" style="--bs-bg-opacity: 0.1;width: 44rem; height: auto;">
             <div class="card-body mx-5">
                 
                 <div class="text-center mb-4">

@@ -2,7 +2,7 @@
 
 
 
-<nav class="navbar navbar-expand-lg bg-success  px-5" data-bs-theme="dark"  style="--bs-bg-opacity: 0.1; height: 80px;">
+<nav class="navbar navbar-expand-lg bg-success  px-5" style="--bs-bg-opacity: 0.1; height: 80px;">
     <!-- Navbar content -->
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
@@ -38,8 +38,8 @@
               </li>
             </ul>
             <form class="d-flex mt-2" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-light" type="submit">Search</button>
+              <input class="form-control me-2  border-success text-bg-success" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-dark" type="submit">Search</button>
             </form>
           </div>
       </div>

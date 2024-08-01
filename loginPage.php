@@ -39,12 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
       
-      <div class= "d-flex justify-content-center align-items-start row px-2 h-100" width="100" height="100"  style="background-image: url('assets/background6.png'); background-position: bottom; background-size: fill;" >
+      <div class= "d-flex justify-content-center align-items-start row px-2 h-100" width="100" height="100"  style="background-image: url('assets/background9.jpg'); background-position: bottom; background-size: cover;" >
       <?php
         include 'navBar.php';
 
       ?>
-          <div class="card m-5 text-bg-success" style="width: 42rem; height: 27rem; --bs-bg-opacity: 0.2;">
+          <div class="card m-5 bg-success" style="width: 42rem; height: 27rem; --bs-bg-opacity: 0.1;">
               <div class="card-body mx-5" style="--bs-bg-opacity: 0.1;">
                   
                   <div class="text-center mb-4">
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <?php if (isset($error)) echo "<strong style='color:red;'>$error</strong>"; ?>
                       </div>
                       <div class="row mb-3 align-bottom">
-                          <button type="submit" class="btn btn-outline-light w-25">Sign in</button>
+                          <button type="submit" class="btn btn-success w-25">Sign in</button>
                           <div class="col-sm-8 align-middle">
                           <p class="d-flex align-items-center h-100">Don't have an account? <a class="link-info link-offset-2 link-opacity-25-hover ms-2" href="signupPage.php"> Sign Up</a></p>
                           </div>
