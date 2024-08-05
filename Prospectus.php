@@ -1,23 +1,17 @@
 <?php
-require_once 'base_connector.php'; // Assume this file creates a $db PDO instance
-require_once 'JobDescription.php'; // Assume this file creates a $db PDO instance
+require_once 'base_connector.php'; // File containing Database class
+require_once 'Course.php'; // File containing the Course class
 
 // Database connection
 $database = new Database();
 $db = $database->getConnection();
 
+// Get course_id from URL
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
 
-
-// Check if job_id is provided in the URL
-$jobId = isset($_GET['job_id']) ? intval($_GET['job_id']) : 0;
-
-$jobId = 2;
-if ($jobId) {
-    // Create JobDescription instance
-    $job = new JobDescription($jobId, $db);
-} else {
-    die('Invalid Job ID');
-}
+// Initialize Course object and fetch course details
+$course = new Course($course_id, $db);
+$courseDetails = $course->getCourseDetails();
 ?>
 
 <!DOCTYPE html>
@@ -25,92 +19,37 @@ if ($jobId) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prospectus</title>
-    <link rel="stylesheet" href="Prospectus.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Course Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        hr {
-            border: 0;
-            height: 3px;
-            background: #fff;
-            margin: 20px 0;
-        }
-        .scrollable-panel {
-            max-height: 850px;
-            overflow-y: auto;
-            border: 1px solid #155100;
-            padding: 15px;
-        }
-        .carousel-inner img {
-            max-height: 700px;
-            object-fit: cover;
+        .course-details {
+            margin: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="h-100 bg-success row" style="background-image: url('assets/background9.jpg'); background-position: center left; background-size: cover;">
     <?php include 'navBar.php'; ?>
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="3000">
-                <img src="assets/background2.jpeg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <img src="assets/background3.jpeg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <img src="assets/background4.jpeg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev" aria-label="Previous">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" aria-label="Next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+
+    <div class="container course-details">
+        <?php if ($courseDetails): ?>
+            <h1><?php echo htmlspecialchars($courseDetails['course_name']); ?></h1>
+            <p><strong>Description:</strong> <?php echo htmlspecialchars($courseDetails['description']); ?></p>
+            <p><strong>Minimum Duration (Years):</strong> <?php echo htmlspecialchars($courseDetails['minimum_duration_years']); ?></p>
+            <p><strong>Closing Date:</strong> <?php echo htmlspecialchars($courseDetails['closing_date']); ?></p>
+            <p><strong>Minimum Requirements:</strong> <?php echo htmlspecialchars($courseDetails['subject_required']); ?></p>
+            <p><strong>Minimum APS:</strong> <?php echo htmlspecialchars($courseDetails['admission_point_score']); ?></p>
+            <p><strong>Possible Further Studies:</strong> <?php echo htmlspecialchars($courseDetails['possible_further_studies']); ?></p>
+            <p><strong>Possible Careers:</strong> <?php echo htmlspecialchars($courseDetails['possible_careers']); ?></p>
+            <p><strong>Price:</strong> $<?php echo htmlspecialchars($courseDetails['price']); ?></p>
+            <p><strong>Faculty:</strong> <?php echo htmlspecialchars($courseDetails['faculty_name']); ?></p>
+            <p><strong>Institution:</strong> <?php echo htmlspecialchars($courseDetails['institution_name']); ?></p>
+            <p><strong>Location:</strong> <?php echo htmlspecialchars($courseDetails['institution_location']); ?></p>
+        <?php else: ?>
+            <h1>Course not found.</h1>
+        <?php endif; ?>
     </div>
 
-    <div class="d-flex justify-content-center" style="--bs-bg-opacity: 0.1;">
-        <h2 class="w-50 m-3">Job Description</h2>
-    </div>
-
-    <hr>
-
-    <div class="row m-3">
-        <div class="col-4 scrollable-panel">
-            <div class="list-group list-group-item-success" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><?php echo htmlspecialchars($job->getJobTitle()); ?></h5>
-                        <small>Updated recently</small>
-                    </div>
-                    <p class="mb-1"><?php echo htmlspecialchars($job->getCompany()); ?></p>
-                    <small><?php echo htmlspecialchars($job->getLocation()); ?>. Closing date: <?php echo htmlspecialchars($job->getClosingDate()); ?>.</small>
-                </a>
-            </div>
-        </div>
-        <div class="col-8 scrollable-panel">
-        <?php
-                include 'JobDescriptionProcessor.php';
-        ?>
-        </div>
-        
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

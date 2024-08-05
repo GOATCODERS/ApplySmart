@@ -38,7 +38,13 @@
 
                   <div class="row mb-4">
                     <label for="user_id" class="form-label"><strong>Student Number</strong></label>
-                    <input type="number" class="form-control" id="user_id" name="user_id" placeholder="e.g 123456789" required="">
+                    <select id="user_type" class="form-control" name="user_type" required>
+                        <option value="prospective_student">Prospective Student</option>
+                        <option value="current_student">Current Student</option>
+                        <option value="admin">Admin</option>
+                        <option value="faculty">Faculty</option>
+                    </select>
+                    
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Please enter your student number.</div>
                   </div>

@@ -6,7 +6,7 @@ class Database {
     private $servername = "localhost";
     private $username = "mafia26";
     private $password = "admin123";
-    private $dbname = "mydatabase";
+    private $dbname = "apply_smart_db";
     private $pdo;
 
     public function __construct() {
