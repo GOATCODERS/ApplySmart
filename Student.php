@@ -64,7 +64,7 @@ class User {
             $stmt->bindParam(':user_type', $this->user_type);
 
             $stmt->execute();
-            header('Location: Prospectus.php');
+            header('Location: course_list.php');
             exit(); // Always call exit after a header redirection
         } catch (PDOException $e) {
             // Log error to a file with new lines
@@ -105,7 +105,7 @@ class User {
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['user_type'] = $user['user_type']; // Store user type in session
                 $_SESSION['loggedin'] = true;
-                header('Location: welcome.php');
+                header('Location: course_list.php');
                 exit();
             } else {
                 return false; // Return false if login fails

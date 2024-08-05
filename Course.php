@@ -34,5 +34,29 @@ class Course
             return null;
         }
     }
+
+    public function getCurriculumDetails() {
+        try {
+            $sql = "SELECT
+                        code,
+                        module,
+                        nqf_level,
+                        credits,
+                        prerequisite_modules
+                    FROM
+                        curriculum
+                    WHERE
+                        course_id = :course_id
+                    ORDER BY
+                        semester, year";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':course_id', $this->course_id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log('Error: ' . $e->getMessage() . "\r\n", 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
+            return [];
+        }
+    }
 }
 ?>

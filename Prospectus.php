@@ -1,6 +1,6 @@
 <?php
-require_once 'base_connector.php'; // File containing Database class
-require_once 'Course.php'; // File containing the Course class
+require_once 'base_connector.php'; // Ensure this file contains the Database class
+require_once 'Course.php'; // Ensure this file contains the Course class
 
 // Database connection
 $database = new Database();
@@ -12,6 +12,7 @@ $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
 // Initialize Course object and fetch course details
 $course = new Course($course_id, $db);
 $courseDetails = $course->getCourseDetails();
+$curriculumDetails = $course->getCurriculumDetails();
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,9 @@ $courseDetails = $course->getCourseDetails();
         .course-details {
             margin: 20px;
         }
+        .curriculum-table th, .curriculum-table td {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -33,18 +37,52 @@ $courseDetails = $course->getCourseDetails();
 
     <div class="container course-details">
         <?php if ($courseDetails): ?>
-            <h1><?php echo htmlspecialchars($courseDetails['course_name']); ?></h1>
-            <p><strong>Description:</strong> <?php echo htmlspecialchars($courseDetails['description']); ?></p>
-            <p><strong>Minimum Duration (Years):</strong> <?php echo htmlspecialchars($courseDetails['minimum_duration_years']); ?></p>
-            <p><strong>Closing Date:</strong> <?php echo htmlspecialchars($courseDetails['closing_date']); ?></p>
-            <p><strong>Minimum Requirements:</strong> <?php echo htmlspecialchars($courseDetails['subject_required']); ?></p>
-            <p><strong>Minimum APS:</strong> <?php echo htmlspecialchars($courseDetails['admission_point_score']); ?></p>
-            <p><strong>Possible Further Studies:</strong> <?php echo htmlspecialchars($courseDetails['possible_further_studies']); ?></p>
-            <p><strong>Possible Careers:</strong> <?php echo htmlspecialchars($courseDetails['possible_careers']); ?></p>
-            <p><strong>Price:</strong> $<?php echo htmlspecialchars($courseDetails['price']); ?></p>
-            <p><strong>Faculty:</strong> <?php echo htmlspecialchars($courseDetails['faculty_name']); ?></p>
-            <p><strong>Institution:</strong> <?php echo htmlspecialchars($courseDetails['institution_name']); ?></p>
-            <p><strong>Location:</strong> <?php echo htmlspecialchars($courseDetails['institution_location']); ?></p>
+            <div class="card" style="width: 48rem;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center row">
+                        <h2 class="card-title"><?php echo htmlspecialchars($courseDetails['course_name']); ?></h2>
+                        <h6 class="card-subtitle mb-2 text-body-secondary"><?php echo htmlspecialchars($courseDetails['description']); ?></h6>
+                    </div>
+                    <p class="card-text"><strong>Minimum Duration (Years):</strong> <?php echo htmlspecialchars($courseDetails['minimum_duration_years']); ?></p>
+                    <p class="card-text"><strong>Closing Date:</strong> <?php echo htmlspecialchars($courseDetails['closing_date']); ?></p>
+                    <p class="card-text"><strong>Minimum Requirements:</strong> <?php echo htmlspecialchars($courseDetails['subject_required']); ?></p>
+                    <p class="card-text"><strong>Minimum APS:</strong> <?php echo htmlspecialchars($courseDetails['admission_point_score']); ?></p>
+                    <p class="card-text"><strong>Possible Further Studies:</strong> <?php echo htmlspecialchars($courseDetails['possible_further_studies']); ?></p>
+                    <p class="card-text"><strong>Possible Careers:</strong> <?php echo htmlspecialchars($courseDetails['possible_careers']); ?></p>
+                    <p class="card-text"><strong>Price:</strong> $<?php echo htmlspecialchars($courseDetails['price']); ?></p>
+                    <p class="card-text"><strong>Faculty:</strong> <?php echo htmlspecialchars($courseDetails['faculty_name']); ?></p>
+                    <p class="card-text"><strong>Institution:</strong> <?php echo htmlspecialchars($courseDetails['institution_name']); ?></p>
+                    <p class="card-text"><strong>Location:</strong> <?php echo htmlspecialchars($courseDetails['institution_location']); ?></p>
+                </div>
+            </div>
+            
+            <h3 class="my-5">Curriculum</h3>
+            <?php if (count($curriculumDetails) > 0): ?>
+                <table class="table table-striped curriculum-table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Module</th>
+                            <th>NQF Level</th>
+                            <th>Credits</th>
+                            <th>Prerequisite Modules</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($curriculumDetails as $curriculum): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($curriculum['code']); ?></td>
+                                <td><?php echo htmlspecialchars($curriculum['module']); ?></td>
+                                <td><?php echo htmlspecialchars($curriculum['nqf_level']); ?></td>
+                                <td><?php echo htmlspecialchars($curriculum['credits']); ?></td>
+                                <td><?php echo htmlspecialchars($curriculum['prerequisite_modules']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <h4>No curriculum details available.</h4>
+            <?php endif; ?>
         <?php else: ?>
             <h1>Course not found.</h1>
         <?php endif; ?>
