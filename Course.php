@@ -37,24 +37,39 @@ class Course
 
     public function getCurriculumDetails() {
         try {
-            $sql = "SELECT
-                        code,
-                        module,
-                        nqf_level,
-                        credits,
-                        prerequisite_modules
-                    FROM
-                        curriculum
-                    WHERE
-                        course_id = :course_id
-                    ORDER BY
-                        semester, year";
+            $sql = "SELECT 
+                        m.code, 
+                        m.name, 
+                        m.nqf_level, 
+                        m.credits, 
+                        m.prerequisite_modules, 
+                        cm.curriculum_id, 
+                        m.module_id, 
+                        c.course_id, 
+                        c.year, 
+                        c.semester, 
+                        c.total_credits
+                    FROM 
+                        modules m
+                    JOIN 
+                        curriculum_modules cm ON m.module_id = cm.module_id
+                    JOIN 
+                        curriculum c ON cm.curriculum_id = c.curriculum_id
+                    WHERE 
+                        course_id = :course_id;
+                    ";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':course_id', $this->course_id);
+            $stmt->bindParam(':course_id', $this->courseId);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log('Error: ' . $e->getMessage() . "\r\n", 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
+        } catch (Exception $e) {
+            $errorMessage = sprintf(
+                "Error: %s in %s on line %d\r\n",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
+            error_log($errorMessage, 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
             return [];
         }
     }

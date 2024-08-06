@@ -26,3 +26,18 @@ Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field l
 Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list'
 Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list'
 Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list' in E:\xampp\htdocs\ApplySmart\Course.php on line 54
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list' in E:\xampp\htdocs\ApplySmart\Course.php on line 54
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list' in E:\xampp\htdocs\ApplySmart\Course.php on line 54
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list' in E:\xampp\htdocs\ApplySmart\Course.php on line 54
+Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list' in E:\xampp\htdocs\ApplySmart\Course.php on line 54
+Error: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in E:\xampp\htdocs\ApplySmart\Course.php on line 63

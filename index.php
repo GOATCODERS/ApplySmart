@@ -14,15 +14,15 @@
  ?>
       <div class="d-flex h-100 row" width="100" height="100" style="background-image: url('assets/background2.jpeg'); background-position: center; background-size: cover;">
         <!-- Content here -->
-        <div class="card text-bg-success " style="width: 25rem; --bs-bg-opacity: 0; height: 17rem; margin: 200px 120px;">
-          <div class="card-body text-center">
+        <div class=" text-bg-success " style="width: 25rem; --bs-bg-opacity: 0; height: 17rem; margin: 200px 120px;">
+          <div class=" text-center">
             <img src="assets/logo.png" data-bs-theme="dark" alt="Logo" width="60" height="80" class="d-inline-block align-text-top" style="margin-left: 10px; margin-right: 5px;">
             <div>
-              <h1 class="card-title">Apply Smart</h1>
+              <h1 class="">Apply Smart</h1>
             </div>
             
             <div>
-              <p class="card-text">Find Your Ideal Course In Just A few Clicks.</p>
+              <p class="">Find Your Ideal Course In Just A few Clicks.</p>
             </div>
             
             <div class="my-3">

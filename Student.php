@@ -66,9 +66,14 @@ class User {
             $stmt->execute();
             header('Location: course_list.php');
             exit(); // Always call exit after a header redirection
-        } catch (PDOException $e) {
-            // Log error to a file with new lines
-            error_log('Error: ' . $e->getMessage() . "\r\n", 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
+        } catch(Exception $e) {
+            $errorMessage = sprintf(
+                "Error: %s in %s on line %d\r\n",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
+            error_log($errorMessage, 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
             echo 'An error occurred. Please try again later.';
         }
     }
@@ -81,9 +86,14 @@ class User {
             $stmt->bindParam(':email', $email);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            // Log error to a file with new lines
-            error_log('Error: ' . $e->getMessage() . "\r\n", 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
+        } catch (Exception $e) {
+            $errorMessage = sprintf(
+                "Error: %s in %s on line %d\r\n",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
+            error_log($errorMessage, 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
             echo 'An error occurred while retrieving user info. Please try again later.';
             return null;
         }
@@ -110,9 +120,14 @@ class User {
             } else {
                 return false; // Return false if login fails
             }
-        } catch (PDOException $e) {
-            // Log error to a file with new lines
-            error_log('Error: ' . $e->getMessage() . "\r\n", 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
+        }  catch (Exception $e) {
+            $errorMessage = sprintf(
+                "Error: %s in %s on line %d\r\n",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
+            error_log($errorMessage, 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
             echo 'An error occurred during login. Please try again later.';
             return false;
         }

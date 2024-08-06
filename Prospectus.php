@@ -55,31 +55,110 @@ $curriculumDetails = $course->getCurriculumDetails();
                     <p class="card-text"><strong>Location:</strong> <?php echo htmlspecialchars($courseDetails['institution_location']); ?></p>
                 </div>
             </div>
-            
+
             <h3 class="my-5">Curriculum</h3>
             <?php if (count($curriculumDetails) > 0): ?>
-                <table class="table table-striped curriculum-table">
-                    <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Module</th>
-                            <th>NQF Level</th>
-                            <th>Credits</th>
-                            <th>Prerequisite Modules</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($curriculumDetails as $curriculum): ?>
+                <?php
+                // Initialize variables
+                $currentYear = '';
+                $currentSemester = '';
+                $semesterCredits = 0;
+                $total_year_credit = 0;
+                function printTableHeader($year) {
+                    $yearName = match($year) {
+                        1 => 'FIRST YEAR',
+                        2 => 'SECOND YEAR',
+                        default => 'THIRD YEAR'
+                    };
+                    echo "<table class='table table-borderless'>
+                        <thead class=\"table-success\">
                             <tr>
-                                <td><?php echo htmlspecialchars($curriculum['code']); ?></td>
-                                <td><?php echo htmlspecialchars($curriculum['module']); ?></td>
-                                <td><?php echo htmlspecialchars($curriculum['nqf_level']); ?></td>
-                                <td><?php echo htmlspecialchars($curriculum['credits']); ?></td>
-                                <td><?php echo htmlspecialchars($curriculum['prerequisite_modules']); ?></td>
+                                <th colspan='5'>{$yearName}</th>
                             </tr>
-                        <?php endforeach; ?>
+                        </thead>
+                        <thead class=\"table-light\">
+                            <tr>
+                                <th>CODE</th>
+                                <th>MODULE</th>
+                                <th>NQF-L</th>
+                                <th>CREDIT</th>
+                                <th>PREREQUISITE MODULE(S)</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                }
+
+                function printTableFooter($year, $total_year_credit) {
+                    $yearName = match($year) {
+                        1 => 'FIRST YEAR',
+                        2 => 'SECOND YEAR',
+                        default => 'THIRD YEAR'
+                    };
+                    echo "<tr>
+                        <td colspan='5'>
+                            <strong>TOTAL CREDITS FOR THE {$yearName}: {$total_year_credit}</strong>
+                        </td>
+                    </tr>
                     </tbody>
-                </table>
+                    </table>";
+                }
+
+                foreach ($curriculumDetails as $row) {
+                    $semesterCredits += $row['credits'];
+                    $prerequisites = $row['prerequisite_modules'] ? $row['prerequisite_modules'] : 'None';
+                    $prerequisitesArray = explode(',', $prerequisites);
+
+
+
+                    if ($currentYear != $row['year']) {
+                        if ($currentYear != '') {
+                            printTableFooter($total_year_credit, $semesterCredits);
+                        }
+                        $currentYear = $row['year'];
+                        $semesterCredits = 0;
+                        printTableHeader($currentYear);
+                        $total_year_credit += $row['total_credits'];
+                    }
+                    
+                    if ($currentSemester != $row['semester'] && $row['credits'] > 10) {
+                        if ($row['total_credits'] == $semesterCredits) {
+                            echo "<tr>
+                                <td colspan='3'><strong>TOTAL CREDITS FOR THE SEMESTER:</strong></td>
+                                <td><strong>{$row['total_credits']}</strong></td>
+                                <td><strong></strong></td>
+                                </tr>";
+                        }
+                        $currentSemester = $row['semester'];
+
+                        echo "<thead>
+                            <tr>
+                                <th colspan='5'>{$currentSemester} SEMESTER</th>
+                            </tr>
+                        </thead>";
+                    }
+
+                   
+
+                    echo "<tr>
+                        <td>" . htmlspecialchars($row['code']) . "</td>
+                        <td>" . htmlspecialchars($row['name']) . "</td>
+                        <td>" . htmlspecialchars($row['nqf_level']) . "</td>
+                        <td>" . htmlspecialchars($row['credits']) . "</td>
+                        <td>";
+                    
+                    foreach ($prerequisitesArray as $prerequisite) {
+                        echo htmlspecialchars(trim($prerequisite)) . '<br>';
+                    }
+
+                    echo "</td>
+                    </tr>";
+                }
+
+                // Output the total credits for the last year
+                if ($currentYear != '') {
+                    printTableFooter($currentYear, $semesterCredits);
+                }
+                ?>
             <?php else: ?>
                 <h4>No curriculum details available.</h4>
             <?php endif; ?>
