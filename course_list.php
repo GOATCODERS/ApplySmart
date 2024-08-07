@@ -1,6 +1,6 @@
 <?php
 require_once 'base_connector.php'; // File containing Database class
-require_once 'Course.php'; // File containing the Course class
+require_once 'models/Course.php'; // File containing the Course class
 
 // Database connection
 $database = new Database();

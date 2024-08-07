@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2024 at 03:28 PM
+-- Generation Time: Aug 07, 2024 at 12:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -125,7 +125,7 @@ INSERT INTO `curriculum` (`curriculum_id`, `course_id`, `year`, `semester`, `tot
 (3, 1, 2, 'FIRST', 60),
 (4, 1, 2, 'SECOND', 60),
 (5, 1, 3, 'FIRST', 60),
-(6, 1, 3, 'SECOND', 60);
+(6, 1, 3, 'SECOND', 90);
 
 -- --------------------------------------------------------
 
@@ -150,24 +150,25 @@ INSERT INTO `curriculum_modules` (`curriculum_id`, `module_id`, `module_type`) V
 (1, 4, 'CORE'),
 (1, 5, 'CORE'),
 (1, 6, 'CORE'),
-(1, 7, 'CORE'),
-(1, 8, 'CORE'),
-(1, 9, 'CORE'),
-(1, 10, 'CORE'),
-(2, 11, 'CORE'),
-(2, 12, 'CORE'),
-(2, 13, 'CORE'),
-(2, 14, 'CORE'),
-(3, 15, 'CORE'),
-(3, 16, 'CORE'),
-(3, 17, 'CORE'),
-(3, 18, 'ELECTIVE'),
-(4, 19, 'CORE'),
-(4, 20, 'CORE'),
-(4, 21, 'CORE'),
-(4, 22, 'ELECTIVE'),
-(4, 23, 'ELECTIVE'),
-(5, 24, 'CORE');
+(2, 7, 'CORE'),
+(2, 8, 'CORE'),
+(2, 9, 'CORE'),
+(2, 10, 'CORE'),
+(3, 11, 'CORE'),
+(3, 12, 'CORE'),
+(3, 13, 'CORE'),
+(3, 14, 'CORE'),
+(4, 15, 'CORE'),
+(4, 16, 'CORE'),
+(4, 17, 'CORE'),
+(4, 18, 'CORE'),
+(5, 19, 'CORE'),
+(5, 20, 'CORE'),
+(5, 21, 'CORE'),
+(5, 22, 'ELECTIVE'),
+(5, 23, 'ELECTIVE'),
+(5, 24, 'ELECTIVE'),
+(6, 25, 'CORE');
 
 -- --------------------------------------------------------
 
@@ -282,7 +283,7 @@ INSERT INTO `modules` (`module_id`, `code`, `name`, `nqf_level`, `credits`, `pre
 (22, 'DBP316D', 'Database Programming', 6, 15, 'Database Principles'),
 (23, 'DIS316D', 'Distributed Systems', 6, 15, NULL),
 (24, 'WEM316D', 'Web Server Management', 6, 15, NULL),
-(25, 'WOC316D', 'Work-Integrated Learning', 6, 60, 'Internet Programming, Mobile Computing, Software Project, Web Server Management or Database Programming or Distributed Systems');
+(25, 'WOC316D', 'Work-Integrated Learning', 6, 60, 'Internet Programming,\nMobile Computing,\nSoftware Project,\nWeb Server Management,\nor Database Programming,\nor Distributed Systems');
 
 -- --------------------------------------------------------
 

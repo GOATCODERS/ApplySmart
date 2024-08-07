@@ -21,6 +21,7 @@ class User {
     // Setters
     public function setName($name) {
         $this->name = $name;
+        
     }
     public function setLastName($lastName) {
         $this->lastName = $lastName;
@@ -102,35 +103,30 @@ class User {
     // Authenticate user
     public static function login($email, $password, $db) {
         try {
-            $sql = "SELECT name, lastName, email, password, user_type FROM users WHERE email = :email";
+            $sql = "SELECT user_id, name, lastName, email, password, user_type FROM users WHERE email = :email";
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
             if ($user && password_verify($password, $user['password'])) {
-                session_start();
+                session_start(); // Start session if not already started
+                $_SESSION['user_id'] = $user['user_id']; // Store user ID in session
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['lastName'] = $user['lastName'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['user_type'] = $user['user_type']; // Store user type in session
-                $_SESSION['loggedin'] = true;
-                header('Location: course_list.php');
-                exit();
+                $_SESSION['loggedin'] = true; // Indicate that the user is logged in
+                
+                return true; // Login successful
             } else {
-                return false; // Return false if login fails
+                return false; // Login failed
             }
-        }  catch (Exception $e) {
-            $errorMessage = sprintf(
-                "Error: %s in %s on line %d\r\n",
-                $e->getMessage(),
-                $e->getFile(),
-                $e->getLine()
-            );
-            error_log($errorMessage, 3, 'E:\\xampp\\htdocs\\ApplySmart\\var\\log\\app_errors.log');
-            echo 'An error occurred during login. Please try again later.';
+        } catch (Exception $e) {
+            error_log($e->getMessage(), 3, 'error_log.log');
             return false;
         }
     }
+    
 }
 ?>

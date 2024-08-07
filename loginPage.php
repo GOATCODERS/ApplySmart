@@ -1,32 +1,30 @@
 <?php
-// Include the User class and establish database connection
-require_once 'Student.php';
+session_start(); // Ensure session is started
+
 require_once 'base_connector.php'; // Assume this file creates a $db PDO instance
+require_once 'models/Student.php'; // Include the User class
 
 // Check if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['email'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     
     $database = new Database();
     $db = $database->getConnection();
 
     // Attempt to login
-    $loginSuccess = User::login($username, $password, $db);
+    $loginSuccess = User::login($email, $password, $db);
 
-    // If login fails, redirect with an error message
+    // If login fails, show an error message
     if (!$loginSuccess) {
-        $error= "Invalid email or password";;
+        $error = "Invalid email or password";
     } else {
-      header('Location: Prostectus.php');
-  
+        // Redirect to the course list or the desired page
+        header('Location: course_list.php');
+        exit(); // Ensure no further code is executed after redirection
     }
 }
 ?>
-
-
-
-
 
 <html lang="en">
 <head>

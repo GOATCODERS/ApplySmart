@@ -1,6 +1,6 @@
 <?php
 require_once 'base_connector.php'; // Ensure this file contains the Database class
-require_once 'Course.php'; // Ensure this file contains the Course class
+require_once 'models/Course.php'; // Ensure this file contains the Course class
 
 // Database connection
 $database = new Database();
@@ -53,6 +53,9 @@ $curriculumDetails = $course->getCurriculumDetails();
                     <p class="card-text"><strong>Faculty:</strong> <?php echo htmlspecialchars($courseDetails['faculty_name']); ?></p>
                     <p class="card-text"><strong>Institution:</strong> <?php echo htmlspecialchars($courseDetails['institution_name']); ?></p>
                     <p class="card-text"><strong>Location:</strong> <?php echo htmlspecialchars($courseDetails['institution_location']); ?></p>
+
+                    <!-- Apply Button -->
+                    <a href="application_form.php?course_id=<?php echo urlencode($course_id); ?>" class="btn btn-primary">Apply</a>
                 </div>
             </div>
 
@@ -64,6 +67,8 @@ $curriculumDetails = $course->getCurriculumDetails();
                 $currentSemester = '';
                 $semesterCredits = 0;
                 $total_year_credit = 0;
+                $final_year_credit = 0;
+                $qualification_credits = 0;
                 function printTableHeader($year) {
                     $yearName = match($year) {
                         1 => 'FIRST YEAR',
@@ -95,50 +100,58 @@ $curriculumDetails = $course->getCurriculumDetails();
                         default => 'THIRD YEAR'
                     };
                     echo "<tr>
-                        <td colspan='5'>
-                            <strong>TOTAL CREDITS FOR THE {$yearName}: {$total_year_credit}</strong>
+                        <td colspan='3'>
+                            <strong>TOTAL CREDITS FOR THE {$yearName}: </strong>
                         </td>
-                    </tr>
-                    </tbody>
-                    </table>";
+                        <td colspan='2'>
+                            <strong> {$total_year_credit}</strong>
+                        </td>
+                        </tr>";
                 }
 
                 foreach ($curriculumDetails as $row) {
-                    $semesterCredits += $row['credits'];
                     $prerequisites = $row['prerequisite_modules'] ? $row['prerequisite_modules'] : 'None';
                     $prerequisitesArray = explode(',', $prerequisites);
 
-
-
-                    if ($currentYear != $row['year']) {
-                        if ($currentYear != '') {
-                            printTableFooter($total_year_credit, $semesterCredits);
-                        }
-                        $currentYear = $row['year'];
-                        $semesterCredits = 0;
-                        printTableHeader($currentYear);
-                        $total_year_credit += $row['total_credits'];
-                    }
-                    
                     if ($currentSemester != $row['semester'] && $row['credits'] > 10) {
                         if ($row['total_credits'] == $semesterCredits) {
                             echo "<tr>
-                                <td colspan='3'><strong>TOTAL CREDITS FOR THE SEMESTER:</strong></td>
+                                <td colspan='3'><strong>TOTAL CREDITS FOR {$currentSemester} SEMESTER:</strong></td>
                                 <td><strong>{$row['total_credits']}</strong></td>
                                 <td><strong></strong></td>
                                 </tr>";
+                                
+                                $semesterCredits = 0;
                         }
                         $currentSemester = $row['semester'];
-
-                        echo "<thead>
+                        if($currentYear == $row['year'])
+                        {
+                            echo "<thead>
                             <tr>
                                 <th colspan='5'>{$currentSemester} SEMESTER</th>
                             </tr>
                         </thead>";
+                        }
                     }
 
-                   
+                    if ($currentYear != $row['year']) {
+                        if ($currentYear != '') {
+                            printTableFooter($currentYear, $total_year_credit);
+                            echo "</tr>
+                                    </tbody>
+                                    </table>";
+                            
+                            $total_year_credit = 0;
+                        }
+                        $currentYear = $row['year'];
+                        
+                        printTableHeader($currentYear);
+                    }
 
+                    $semesterCredits += $row['credits'];
+                    $total_year_credit += $row['credits'];
+                    $final_year_credit = $total_year_credit;
+                    $qualification_credits += $row['credits'];
                     echo "<tr>
                         <td>" . htmlspecialchars($row['code']) . "</td>
                         <td>" . htmlspecialchars($row['name']) . "</td>
@@ -156,7 +169,25 @@ $curriculumDetails = $course->getCurriculumDetails();
 
                 // Output the total credits for the last year
                 if ($currentYear != '') {
-                    printTableFooter($currentYear, $semesterCredits);
+                    echo "<tr>
+                    <td colspan='3'><strong>TOTAL CREDITS FOR {$currentSemester} SEMESTER:</strong></td>
+                    <td><strong>{$row['total_credits']}</strong></td>
+                    <td><strong></strong></td>
+                    </tr>";
+                    printTableFooter($currentYear, $final_year_credit);
+                    
+                    echo "
+                    <tr>
+                        <td colspan='3'>
+                            <strong>TOTAL CREDITS FOR THE QUALIFICATION: </strong>
+                        </td>
+                        <td colspan='2'>
+                            <strong> {$qualification_credits}</strong>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                    </table>";
                 }
                 ?>
             <?php else: ?>
