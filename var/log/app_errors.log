@@ -41,3 +41,4 @@ Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does
 Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in E:\xampp\htdocs\ApplySmart\Course.php on line 63
 Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'code' in 'field list' in E:\xampp\htdocs\ApplySmart\Course.php on line 54
 Error: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in E:\xampp\htdocs\ApplySmart\Course.php on line 63
+Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'test@beispiel.de' for key 'email' in E:\xampp\htdocs\ApplySmart\models\Student.php on line 67

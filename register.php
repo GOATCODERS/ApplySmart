@@ -1,7 +1,7 @@
 <?php
 
 require 'base_connector.php';
-require 'Student.php';
+require 'models/Student.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize input

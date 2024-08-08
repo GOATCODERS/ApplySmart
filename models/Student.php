@@ -65,7 +65,8 @@ class User {
             $stmt->bindParam(':user_type', $this->user_type);
 
             $stmt->execute();
-            header('Location: course_list.php');
+            
+            header('Location: loginPage.php');
             exit(); // Always call exit after a header redirection
         } catch(Exception $e) {
             $errorMessage = sprintf(

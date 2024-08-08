@@ -10,6 +10,7 @@ $db = $database->getConnection();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
+    header("Location: loginPage.php");
     die('Error: User not logged in.');
 }
 

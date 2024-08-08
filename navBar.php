@@ -33,7 +33,7 @@
                   <li><a class="dropdown-item" href="loginPage.php">Login</a></li>
                   <li><a class="dropdown-item" href="signupPage.php">Register</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="index.html">Log out</a></li>
+                  <li><a class="dropdown-item" href="logout.php">Log out</a></li>
                 </ul>
               </li>
             </ul>

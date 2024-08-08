@@ -21,7 +21,7 @@
                 </div>
                 <hr class="mb-4 text-success">
                 
-                <form id="registrationForm" action="register.php" method="post" class="needs-validation was-validated" novalidate="">
+                <form id="registrationForm" action="register.php" method="post" class="needs-validation " novalidate="">
                   <div class="row mb-4">
                     <label for="first_name" class="form-label"><strong>First name</strong></label>
                     <input type="text" class="form-control" id="first_name" name="first_name" placeholder="e.g Mark" required="">
@@ -37,7 +37,7 @@
                   </div>
 
                   <div class="row mb-4">
-                    <label for="user_id" class="form-label"><strong>Student Number</strong></label>
+                    <label for="user_id" class="form-label"><strong>Student Type</strong></label>
                     <select id="user_type" class="form-control" name="user_type" required>
                         <option value="prospective_student">Prospective Student</option>
                         <option value="current_student">Current Student</option>
@@ -61,6 +61,9 @@
                   <div class="row mb-4">
                     <label for="password" class="form-label"><strong>New password</strong></label>
                     <input type="password" class="form-control is-invalid" id="password" name="password" required="">
+                    <div id="passwordHelpBlock" class="form-text">
+                      Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </div>
                     <div class="invalid-feedback">Too short. Password must be at least 8 characters long.</div>
                   </div>
 

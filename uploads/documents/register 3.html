@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>register</title>
+	<link rel="stylesheet" type="text/css" href="register 3.css">
+	
+	
+</head>
+<body>
+	
+<div class="wholecontainer">
+	<header>
+		<h1>ApplySmart</h1>
+	</header>
+	<div class="cont1">
+		<h2 class="text1">Already have account?</h2>
+		<button  class="button1"><a href="login.html"> Log In</a></button>
+	</div>
+	<div class="container">
+			<form id="form" action="register.php" method="post">
+			<div class="name">
+				<input type="text" name="name" placeholder="Name" id="name">
+				<div><span id="name_error"></span></div>
+			</div>
+			<div class="surname">
+				<input type="text" name="surname" placeholder="Surname" id="surname">
+				<div><span id="surname_error"></span></div>
+			<div class="email">
+				<input type="text" name="email" placeholder="Email" id="email">
+				<div><span id="email_error"></span></div>
+			</div>
+			<div class="password" >
+				<input type="password" name="password" placeholder="Password" id="password">
+				<div><span id="password_error"></span></div>
+			</div>
+			<div class="confirmPassword">
+				<input type="password" name="confirmPassword" placeholder="Confirm password" id="confirmPassword">
+				<div><span id="confirmPassword_error"></span></div>
+			</div>
+			<div class="button">
+				
+				<button type="submit" class="button2" name="submit">Create Profile</button>
+			</div>
+		</form>
+		</div>
+	</div>
+	<div class="cont2">
+		
+	</div>
+	<footer>
+		<button  class="button3">Back</button>
+	</footer>
+</div>
+</body>
+<script type="text/javascript" defer src="register 3.js"></script>
+</html>
